@@ -38,6 +38,17 @@
     </div>
     <div class="col-12 col-sm-4 mt-5">
       <%= render 'restaurants/side_info' %>
+      <div data-controller="booking-price">
+        <%= simple_form_for [@restaurant, @booking] do |f| %>
+          <%= f.input :start_date, html5: true, input_html: { data: { booking_price_target: 'start_date', action: 'change->booking-price#update' } } %>
+          <%= f.input :end_date, html5: true, input_html: { data: { booking_price_target: 'end_date', action: 'change->booking-price#update' } } %>
+          <p>
+            Total:
+            <span class='fw-light' data-booking-price-target='price' data-price="<%= @restaurant.price %>">¥<%= @restaurant.price %> / day</span>
+          </p>
+          <%= f.submit 'Book', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     </p>
   </div>
 </div>
