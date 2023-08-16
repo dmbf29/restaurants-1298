@@ -16,6 +16,7 @@ class RestaurantsController < ApplicationController
   def show
     # params is pulling the ID from the url
     @restaurant = Restaurant.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
